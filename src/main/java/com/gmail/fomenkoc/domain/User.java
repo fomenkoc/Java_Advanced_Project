@@ -28,6 +28,15 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(User user) {
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.role = user.getRole();
+	}
 
 	public User(String email, String password, String firstName,
 			String lastName, UserRole role) {
