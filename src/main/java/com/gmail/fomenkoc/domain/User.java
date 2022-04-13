@@ -2,13 +2,27 @@ package com.gmail.fomenkoc.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String email;
 	private String password;
 	private String firstName;
 	private String lastName;
+	
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
 	public User() {
