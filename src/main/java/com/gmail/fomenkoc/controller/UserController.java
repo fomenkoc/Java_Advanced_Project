@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gmail.fomenkoc.domain.Periodical;
 import com.gmail.fomenkoc.domain.User;
 import com.gmail.fomenkoc.service.PeriodicalsService;
 import com.gmail.fomenkoc.service.UserService;
@@ -18,9 +17,9 @@ import com.gmail.fomenkoc.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
-    private PeriodicalsService periodicalsService;
+	private PeriodicalsService periodicalsService;
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
@@ -61,10 +60,10 @@ public class UserController {
 
 		return map;
 	}
-	
-    @RequestMapping(value ="/create-periodical", method = RequestMethod.GET)
-    public ModelAndView createPeriodical() {
-        return new ModelAndView("createPeriodical", "periodical", new Periodical());
-    } 
+
+	@RequestMapping(value = "/create-periodical", method = RequestMethod.GET)
+	public String createPeriodical() {
+		return "createPeriodical";
+	}
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -18,25 +19,30 @@ public class Periodical {
 	private String name;
 	private String description;
 	private Double price;
+	@Lob
+	private String encodedImage;
 
 	public Periodical() {
 		super();
 	}
 
-	public Periodical(String name, String description, Double price) {
+	public Periodical(String name, String description, Double price,
+			String encodedImage) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.encodedImage = encodedImage;
 	}
 
-	public Periodical(Integer id, String name, String description,
-			Double price) {
+	public Periodical(Integer id, String name, String description, Double price,
+			String encodedImage) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.encodedImage = encodedImage;
 	}
 
 	public Integer getId() {
@@ -71,9 +77,17 @@ public class Periodical {
 		this.price = price;
 	}
 
+	public String getEncodedImage() {
+		return encodedImage;
+	}
+
+	public void setEncodedImage(String encodedImage) {
+		this.encodedImage = encodedImage;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, id, name, price);
+		return Objects.hash(description, encodedImage, id, name, price);
 	}
 
 	@Override
@@ -86,6 +100,7 @@ public class Periodical {
 			return false;
 		Periodical other = (Periodical) obj;
 		return Objects.equals(description, other.description)
+				&& Objects.equals(encodedImage, other.encodedImage)
 				&& Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name)
 				&& Objects.equals(price, other.price);
