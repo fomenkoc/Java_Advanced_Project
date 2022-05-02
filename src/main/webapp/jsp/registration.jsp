@@ -75,10 +75,6 @@
 		</form:form>
 
 	</div>
-	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	function verifyPassword() {
 		let password = document.getElementById("password").value;

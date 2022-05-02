@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Periodicals</title>
+<title>Bucket</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -42,32 +42,34 @@
 
 
 
-				<form:form method="POST" action="${contextPath}/addPeriodical"
-					enctype="multipart/form-data">
-					<table>
+				<table class="table table-striped">
+					<thead>
 						<tr>
-							<td>Name</td>
-							<td><input type="text" name="name"></td>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Price</th>
+							<th>Image</th>
+							<th>Purchase Date</th>
+							<th>Action</th>
 						</tr>
-						<tr>
-							<td>Description</td>
-							<td><input type="text" name="description"></td>
-						</tr>
-						<tr>
-							<td>Price</td>
-							<td><input type="number" name="price"></td>
-						</tr>
-						<tr>
-							<td>Select image to upload</td>
-							<td><input type="file" name="image"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Submit" /></td>
-						</tr>
-					</table>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</form:form>
+					</thead>
+					<tbody>
+						<c:forEach var="bucket" items="${bucketItems}">
+							<tr>
+								<td>${bucket.id}</td>
+								<td>${bucket.periodical.name}</td>
+								<td>${bucket.periodical.description}</td>
+								<td>${bucket.periodical.price}</td>
+								<td><img
+									src="data:image/jpg;base64,${bucket.periodical.encodedImage}"
+									alt="image" style="width: 10%"></td>
+								<td>${bucket.purchaseDate}</td>
+								<td><a href="bucket?id= ${bucket.id}">delete</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 
 
 			</div>

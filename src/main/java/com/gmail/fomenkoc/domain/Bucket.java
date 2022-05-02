@@ -1,6 +1,7 @@
 package com.gmail.fomenkoc.domain;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -27,6 +28,11 @@ public class Bucket {
 
 	public Bucket() {
 		super();
+	}
+
+	public Bucket(Integer id) {
+		super();
+		this.id = id;
 	}
 
 	public Bucket(User user, Periodical periodical, Date purchaseDate) {
