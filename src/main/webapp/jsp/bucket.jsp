@@ -63,7 +63,7 @@
 								<td>${bucket.periodical.price}</td>
 								<td><img
 									src="data:image/jpg;base64,${bucket.periodical.encodedImage}"
-									alt="image" style="width: 10%"></td>
+									alt="image" style="width: 20%"></td>
 								<td>${bucket.purchaseDate}</td>
 								<td><a href="bucket?id= ${bucket.id}">delete</a></td>
 							</tr>

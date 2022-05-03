@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/").permitAll()
 				.antMatchers("/home").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 				.antMatchers("/create-periodical").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+				.antMatchers("/buckets").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
 				.anyRequest().permitAll().and()
 
 				.formLogin().loginPage("/login").defaultSuccessUrl("/home")
