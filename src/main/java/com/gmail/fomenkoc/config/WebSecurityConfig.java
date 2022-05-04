@@ -37,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/").permitAll()
 				.antMatchers("/home").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-				.antMatchers("/create-periodical").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-				.antMatchers("/buckets").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+				.antMatchers("/create-periodical").access("hasRole('ROLE_ADMIN')")
+				.antMatchers("/buckets").access("hasRole('ROLE_USER')")
 				.anyRequest().permitAll().and()
 
 				.formLogin().loginPage("/login").defaultSuccessUrl("/home")
