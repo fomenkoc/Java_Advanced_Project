@@ -18,70 +18,82 @@
 
 <title>Create an account</title>
 
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 
 	<div class="container">
 
-		<form:form method="POST" modelAttribute="userForm" class="form-signin">
-			<h2 class="form-signin-heading">Create your account</h2>
+		<div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">Register</div>
+                            <div class="card-body">
 
-			<spring:bind path="firstName">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="firstName" class="form-control" placeholder="First name" autofocus="true"></form:input>
-					<form:errors path="firstName"></form:errors>
-				</div>
-			</spring:bind>
+                                <form:form class="form-horizontal form-signin" method="POST">
 
-			<spring:bind path="lastName">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="lastName" class="form-control" placeholder="Last name" autofocus="true"></form:input>
-					<form:errors path="lastName"></form:errors>
-				</div>
-			</spring:bind>
+                                    <div class="form-group">
+                                        <label for="firstName" class="cols-sm-2 control-label">First Name</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter First Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter Last Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                                        <div class="cols-sm-10">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                <input type="password" class="form-control" name="confirm" id="rPassword" placeholder="Confirm your Password" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                    </div>
+                                    <div class="login-register">
+                                        <a href="${contextPath}/login">Login</a>
+                                    </div>
+                                </form:form>
+                            </div>
 
-
-			<spring:bind path="email">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="text" path="email" class="form-control" placeholder="Email" autofocus="true"></form:input>
-					<form:errors path="email"></form:errors>
-				</div>
-			</spring:bind>
-
-			<spring:bind path="password">
-				<div class="form-group ${status.error ? 'has-error' : ''}">
-					<form:input type="password" path="password" class="form-control" placeholder="Password" id="password" onchange="verifyPassword()"></form:input>
-					<form:errors path="password"></form:errors>
-				</div>
-			</spring:bind>
-
-
-			<div class="form-group ${status.error ? 'has-error' : ''}">
-				<input type="password" class="form-control" id="rPassword" onchange="verifyPassword()" placeholder="Confirm your password"></input>
-
-			</div>
-
-
-			<button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Submit</button>
-		</form:form>
+                        </div>
+                    </div>
+                </div>
 
 	</div>
-	<script type="text/javascript">
-	function verifyPassword() {
-		let password = document.getElementById("password").value;
-		let rPassword = document.getElementById("rPassword").value;
-		if (password != rPassword) {
-			document.getElementById("submit").setAttribute("disabled","disabled");;
-		} else {
-			document.getElementById("submit").removeAttribute("disabled");
-		}
-		}
-		document.getElementById("password").addEventListener("change", verifyPassword);
-		document.getElementById("rPassword").addEventListener("change", verifyPassword);
-	</script>
+	<script type="text/javascript" src="/js/registration.js"></script>
 </body>
 </html>
