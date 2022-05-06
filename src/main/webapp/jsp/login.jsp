@@ -24,6 +24,8 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+	<script type="text/javascript" src="/js/login.js"></script>
+	
 </head>
 
 <body>
@@ -32,22 +34,32 @@
 
     <div class="row mgTp">
         <form method="POST" action="${contextPath}/login" class="form-signin col-md-6 offset-md-3">
-            <h3 class="title">Please sign in</h3>
+            <h3 class="title"><spring:message code="login.title"/></h3>
             <hr class="divisor">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                <label for="exampleInputEmail1"><spring:message code="login.email"/></label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="<spring:message code="login.email"/>" name="email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                <label for="exampleInputPassword1"><spring:message code="login.password"/></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="<spring:message code="login.password"/>" name="password">
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <button type="submit" class="btn btn-primary topBtn"><i class="fa fa-sign-in"></i> Sign in</button>
+            <button type="submit" class="btn btn-primary topBtn"><i class="fa fa-sign-in"></i> <spring:message code="login.singIn"/></button>
             <h4 class="text-center">
-            	<a href="${contextPath}/registration">Create an account</a>
+            	<a href="${contextPath}/registration"><spring:message code="login.createAccount"/></a>
             </h4>
+        <div>
+			<fieldset style="text-align: center;">
+				<label><spring:message code="login.choose_lang" /></label>
+				<select id="locales">
+					<option value="en"><spring:message code="login.english"/></option>
+					<option value="ua"><spring:message code="login.ukrainian"/></option>
+				</select>
+			</fieldset>
+		</div>            
         </form>
+
     </div>
 
 </div>

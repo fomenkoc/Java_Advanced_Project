@@ -1,4 +1,4 @@
-"usestrict"
+"use strict"
 function verifyPassword() {
 	let password = document.getElementById("password").value;
 	let rPassword = document.getElementById("rPassword").value;
