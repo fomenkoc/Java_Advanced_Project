@@ -3,84 +3,97 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Bucket</title>
+<link rel="stylesheet" href="/css/home.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<div class="container">
- 
-		<!-- Sidebar -->
-		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-			<h3 class="w3-bar-item">Menu</h3>
-			<a href="/home" class="w3-bar-item w3-button">Home</a>
-			
-			<security:authorize access="hasRole('ROLE_ADMIN')">
-				<a href="/create-periodical" class="w3-bar-item w3-button">Create periodical</a>
-			</security:authorize>
-			<security:authorize access="hasRole('ROLE_USER')">
-				<a href="/buckets" class="w3-bar-item w3-button">Bucket</a>
-			</security:authorize>
-		</div>
+	<div class="container-fluid">
+		<div class="row">
 
-
-		<!-- Page Content -->
-		<div style="margin-left: 10%">
-			<div class="w3-container w3-teal">
-				<h1>Create new Periodical</h1>
+			<div id="admin-sidebar" class="col-md-2 p-x-0 p-y-3">
+				<ul class="sidenav admin-sidenav list-unstyled">
+					<li><a href="/home"><spring:message code="menu.home"/></a></li>
+					<security:authorize access="hasRole('ROLE_ADMIN')">
+						<li><a href="/create-periodical"><spring:message code="menu.createPeriodical"/></a></li>
+					</security:authorize>
+					<security:authorize access="hasRole('ROLE_USER')">
+						<li><a href="/buckets"><spring:message code="menu.bucket"/></a></li>
+					</security:authorize>
+					<li><a href="#"
+						onclick="document.forms['logoutForm'].submit()"><spring:message code="menu.logout"/></a></li>
+				</ul>
+				<p>${pageContext.request.userPrincipal.name}
 			</div>
-			<div class="w3-container">
-				<c:if test="${pageContext.request.userPrincipal.name != null}">
-					<form id="logoutForm" method="POST" action="${contextPath}/logout">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					</form>
-					<h2>
-						Welcome ${pageContext.request.userPrincipal.name} | 
-						<a onclick="document.forms['logoutForm'].submit()">Logout</a>
-					</h2>
-				</c:if>
+
+			<!-- Page Content -->
+			<div id="admin-main-control" class="col-md-10 p-x-3 p-y-1">
+				<div class="w3-container black-white">
+					<h1><spring:message code="bucket.title"/></h1>
+				</div>
+				<div class="w3-container d-flex flex-wrap">
+					<c:if test="${pageContext.request.userPrincipal.name != null}">
+						<form id="logoutForm" method="POST" action="${contextPath}/logout">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+						
+					</c:if>
 
 
 
 
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Price</th>
-							<th>Image</th>
-							<th>Purchase Date</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="bucket" items="${bucketItems}">
+					<table class="table table-striped">
+						<thead>
 							<tr>
-								<td>${bucket.id}</td>
-								<td>${bucket.periodical.name}</td>
-								<td>${bucket.periodical.description}</td>
-								<td>${bucket.periodical.price}</td>
-								<td><img src="data:image/jpg;base64,${bucket.periodical.encodedImage}" alt="image" style="width: 20%"></td>
-								<td>${bucket.purchaseDate}</td>
-								<td><a href="bucket?id= ${bucket.id}">delete</a></td>
+								<th>id</th>
+								<th><spring:message code="bucket.name"/></th>
+								<th><spring:message code="bucket.description"/></th>
+								<th><spring:message code="bucket.price"/></th>
+								<th><spring:message code="bucket.image"/></th>
+								<th><spring:message code="bucket.date"/></th>
+								<th><spring:message code="bucket.action"/></th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach var="bucket" items="${bucketItems}">
+								<tr>
+									<td>${bucket.id}</td>
+									<td>${bucket.periodical.name}</td>
+									<td>${bucket.periodical.description}</td>
+									<td>${bucket.periodical.price}</td>
+									<td><img
+										src="data:image/jpg;base64,${bucket.periodical.encodedImage}"
+										alt="image" style="width: 20%; max-height: 100px"></td>
+									<td>${bucket.purchaseDate}</td>
+									<td><a href="bucket?id= ${bucket.id}"><spring:message code="bucket.delete"/></a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+
+				</div>
 
 
 			</div>
-
 		</div>
-
-
 	</div>
 </body>
 </html>
