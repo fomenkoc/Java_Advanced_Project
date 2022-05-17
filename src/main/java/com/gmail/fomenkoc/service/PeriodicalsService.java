@@ -28,8 +28,17 @@ public class PeriodicalsService {
 	}
 
 	public Periodical findById(Integer id) {
-		logger.info("Create new periodical by id: " + id);
+		logger.info("Find periodical by id: " + id);
 		return periodicalRepository.findById(id).get();
+	}
+	
+	public Periodical findByName(String name) {
+		return periodicalRepository.findByName(name).get();
+	}
+	
+	public void deleteById(Integer id) {
+		logger.info("Delete periodical by id: " + id);
+		periodicalRepository.delete(findById(id));
 	}
 
 }
